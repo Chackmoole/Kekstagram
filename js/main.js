@@ -1,10 +1,10 @@
 const getRandomNumber = (min, max) => {
-  if(typeof min !=='number' || typeof max !== 'number' || min <= 0 || max <= 0) {
+  if (typeof min !== 'number' || typeof max !== 'number' || min <= 0 || max <= 0) {
     return null;
   }
 
   //если значения равны
-  if (min===max){
+  if (min === max) {
     return min;
   }
   //получаем минимальное и максимальное значение
@@ -21,24 +21,25 @@ const checkStringLength = (str, maxLength) => typeof maxLength === 'number' && t
 
 checkStringLength('   qwertqwert  ', 10);
 
-const MIN_ID = 0;
+const MIN_ID = 1;
 const MAX_ID = 25;
-const idArray = [];
 
 const createIdArray = (minId, maxId) => {
-  for (let i = minId; i <= maxId; i++){
-    idArray.push(i);
+  const tempArray = [];
+  for (let i = minId; i <= maxId; i++) {
+    tempArray.push(i);
   }
+  return tempArray;
 };
 
-createIdArray (MIN_ID, MAX_ID);
+createIdArray(MIN_ID, MAX_ID);
 
 const createPhotoDescription = () => ({
   id: 1,
   url: '',
   description: '',
   likes: 2,
-  comments: [1,2,3]
+  comments: [1, 2, 3]
 });
 
 createPhotoDescription();
