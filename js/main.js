@@ -20,3 +20,25 @@ getRandomNumber(0, 1);
 const checkStringLength = (str, maxLength) => typeof maxLength === 'number' && typeof str === 'string' && str.trim().length <= maxLength;
 
 checkStringLength('   qwertqwert  ', 10);
+
+const MIN_ID = 0;
+const MAX_ID = 25;
+const idArray = [];
+
+const createIdArray = (minId, maxId) => {
+  for (let i = minId; i <= maxId; i++){
+    idArray.push(i);
+  }
+};
+
+createIdArray (MIN_ID, MAX_ID);
+
+const createPhotoDescription = () => ({
+  id: 1,
+  url: '',
+  description: '',
+  likes: 2,
+  comments: [1,2,3]
+});
+
+createPhotoDescription();
