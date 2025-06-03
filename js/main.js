@@ -53,4 +53,11 @@ const createPhotoDescription = () => ({
   avatar: `img/avatar-${MIN_ID}.svg`
 });
 
-createPhotoDescription();
+const createPhotosDesc = () => {
+  const tempArray = Array.from({ length: PHOTO_COUNT }, createPhotoDescription);
+  return tempArray;
+};
+
+
+createPhotosDesc();
+
