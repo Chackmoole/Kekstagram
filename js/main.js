@@ -1,5 +1,5 @@
 const getRandomNumber = (min, max) => {
-  if (typeof min !== 'number' || typeof max !== 'number' || min <= 0 || max <= 0) {
+  if (typeof min !== 'number' || typeof max !== 'number' || min < 0 || max < 0) {
     return null;
   }
 
@@ -34,18 +34,32 @@ const comments = ['Всё отлично!',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-const createDataArray = (minId, maxId) => {
+const createDataArray = (min, max) => {
   const tempArray = [];
-  for (let i = minId; i <= maxId; i++) {
+  const minNumber = Math.min(min, max);
+  const maxNumber = Math.max(min, max);
+  for (let i = minNumber; i <= maxNumber; i++) {
     tempArray.push(i);
   }
   return tempArray;
 };
 
-createDataArray(MIN_ID, MAX_ID);
+const createRandomArray = (min, max) => {
+  const randomArray = [];
+  const tempArray = createDataArray(min, max);
+
+  while (tempArray.length > 0) {
+    const randomNum = getRandomNumber(0, tempArray.length - 1);
+    randomArray.push(tempArray[randomNum]);
+    tempArray.splice(randomNum, 1);
+  }
+  return randomArray;
+};
+
+const idArray = createDataArray(MIN_ID, MAX_ID);
 
 const createPhotoDescription = () => ({
-  id: 1,
+  id: idArray[1],
   url: `photos/${MIN_ID}.jpg`,
   description: comments[0],
   likes: MAX_LIKES - MIN_LIKES,
@@ -61,3 +75,4 @@ const createPhotosDesc = () => {
 
 createPhotosDesc();
 
+createRandomArray(MIN_ID, MAX_ID);
