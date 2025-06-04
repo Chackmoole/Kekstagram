@@ -27,7 +27,18 @@ const MAX_ID = PHOTO_COUNT;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 
-const comments = ['Всё отлично!',
+const NAMES = [
+  'Иван',
+  'Хуан Себастьян',
+  'Мария',
+  'Кристоф',
+  'Виктор',
+  'Юлия',
+  'Люпита',
+  'Вашингтон',
+];
+
+const COMMENTS = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
@@ -56,19 +67,52 @@ const createRandomArray = (min, max) => {
   return randomArray;
 };
 
-const idArray = createRandomArray(MIN_ID, MAX_ID);
+const idsArray = createRandomArray(MIN_ID, MAX_ID);
+
+const urlsArray = createRandomArray(MIN_ID, MAX_ID);
+
+const descriptionsArray = createRandomArray(MIN_ID, MAX_ID);
+
+const messageIdsArray = createRandomArray(0, 200);
+
+const createComment = () => {
+  const randomNum = getRandomNumber(0, 2);
+  const tempArray = [];
+  for (let i = 0; i <= randomNum; i++) {
+    tempArray.push(COMMENTS[getRandomNumber(0, 5)]);
+  }
+  const comment = {
+    id: messageIdsArray[0],
+    avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+    message: tempArray.join(', '),
+    name: NAMES[getRandomNumber(0, 7)],
+  };
+  messageIdsArray.splice(0, 1);
+  return comment;
+};
+
+const createPhotoCOMMENTS = () => {
+  const tempArray = Array.from({ length: PHOTO_COUNT }, createComment);
+  return tempArray;
+
+};
+
+const COMMENTSArray = createPhotoCOMMENTS();
 
 const createPhotoDescription = () => {
 
   const result = {
-    id: idArray[0],
-    url: `photos/${MIN_ID}.jpg`,
-    description: comments[0],
+    id: idsArray[0],
+    url: `photos/${urlsArray[0]}.jpg`,
+    description: descriptionsArray[0],
     likes: MAX_LIKES - MIN_LIKES,
-    comments: [{ MIN_ID: comments[0] }],
-    avatar: `img/avatar-${MIN_ID}.svg`
+    message: COMMENTSArray[0],
   };
-  idArray.splice(0, 1);
+  idsArray.splice(0, 1);
+  urlsArray.splice(0, 1);
+  COMMENTSArray.splice(0, 1);
+  descriptionsArray.splice(0, 1);
+
   return result;
 };
 
@@ -79,6 +123,3 @@ const createPhotosDesc = () => {
 
 
 createPhotosDesc();
-
-
-createRandomArray(MIN_ID, MAX_ID);
