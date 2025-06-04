@@ -71,8 +71,6 @@ const idsArray = createRandomArray(MIN_ID, MAX_ID);
 
 const urlsArray = createRandomArray(MIN_ID, MAX_ID);
 
-const descriptionsArray = createRandomArray(MIN_ID, MAX_ID);
-
 const messageIdsArray = createRandomArray(0, 200);
 
 const createComment = () => {
@@ -104,14 +102,13 @@ const createPhotoDescription = () => {
   const result = {
     id: idsArray[0],
     url: `photos/${urlsArray[0]}.jpg`,
-    description: descriptionsArray[0],
+    description: COMMENTS[getRandomNumber(0, 5)],
     likes: MAX_LIKES - MIN_LIKES,
     message: commentsArray[0],
   };
   idsArray.splice(0, 1);
   urlsArray.splice(0, 1);
   commentsArray.splice(0, 1);
-  descriptionsArray.splice(0, 1);
 
   return result;
 };
@@ -120,5 +117,6 @@ const createPhotosDesc = () => {
   const tempArray = Array.from({ length: PHOTO_COUNT }, createPhotoDescription);
   return tempArray;
 };
+
 
 createPhotosDesc();
