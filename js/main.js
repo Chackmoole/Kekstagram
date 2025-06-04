@@ -85,19 +85,19 @@ const createComment = () => {
     id: messageIdsArray[0],
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
     message: tempArray.join(', '),
-    name: NAMES[getRandomNumber(0, 7)],
+    name: NAMES[getRandomNumber(0, NAMES.length - 1)],
   };
   messageIdsArray.splice(0, 1);
   return comment;
 };
 
-const createPhotoCOMMENTS = () => {
+const createPhotoCommenta = () => {
   const tempArray = Array.from({ length: PHOTO_COUNT }, createComment);
   return tempArray;
 
 };
 
-const COMMENTSArray = createPhotoCOMMENTS();
+const commentsArray = createPhotoCommenta();
 
 const createPhotoDescription = () => {
 
@@ -106,11 +106,11 @@ const createPhotoDescription = () => {
     url: `photos/${urlsArray[0]}.jpg`,
     description: descriptionsArray[0],
     likes: MAX_LIKES - MIN_LIKES,
-    message: COMMENTSArray[0],
+    message: commentsArray[0],
   };
   idsArray.splice(0, 1);
   urlsArray.splice(0, 1);
-  COMMENTSArray.splice(0, 1);
+  commentsArray.splice(0, 1);
   descriptionsArray.splice(0, 1);
 
   return result;
@@ -120,6 +120,5 @@ const createPhotosDesc = () => {
   const tempArray = Array.from({ length: PHOTO_COUNT }, createPhotoDescription);
   return tempArray;
 };
-
 
 createPhotosDesc();
