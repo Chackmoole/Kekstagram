@@ -1,28 +1,7 @@
 import { getRandomNumber } from './util.js';
+import { createConstantsArray } from './constants.js';
 
-const PHOTO_COUNT = 25;
-const MIN_ID = 1;
-const MAX_ID = PHOTO_COUNT;
-const MIN_LIKES = 15;
-const MAX_LIKES = 200;
-
-const NAMES = [
-  'Иван',
-  'Хуан Себастьян',
-  'Мария',
-  'Кристоф',
-  'Виктор',
-  'Юлия',
-  'Люпита',
-  'Вашингтон',
-];
-
-const COMMENTS = ['Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+const data = createConstantsArray();
 
 const createDataArray = (min, max) => {
   const tempArray = [];
@@ -46,32 +25,32 @@ const createRandomArray = (min, max) => {
   return randomArray;
 };
 
-const idsArray = createRandomArray(MIN_ID, MAX_ID);
+const idsArray = createRandomArray(data.MIN_ID, data.MAX_ID);
 
-const urlsArray = createRandomArray(MIN_ID, MAX_ID);
+const urlsArray = createRandomArray(data.MIN_ID, data.MAX_ID);
 
 const messageIdsArray = createRandomArray(0, 200);
 
-const likesArray = createRandomArray(MIN_LIKES, MAX_LIKES);
+const likesArray = createRandomArray(data.MIN_LIKES, data.MAX_LIKES);
 
 const createComment = () => {
   const randomNum = getRandomNumber(0, 2);
   const tempArray = [];
   for (let i = 0; i <= randomNum; i++) {
-    tempArray.push(COMMENTS[getRandomNumber(0, COMMENTS.length - 1)]);
+    tempArray.push(data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)]);
   }
   const comment = {
     id: messageIdsArray[0],
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
     message: tempArray.join(', '),
-    name: NAMES[getRandomNumber(0, NAMES.length - 1)],
+    name: data.NAMES[getRandomNumber(0, data.NAMES.length - 1)],
   };
   messageIdsArray.splice(0, 1);
   return comment;
 };
 
 const createPhotoCommenta = () => {
-  const tempArray = Array.from({ length: PHOTO_COUNT }, createComment);
+  const tempArray = Array.from({ length: data.PHOTO_COUNT }, createComment);
   return tempArray;
 
 };
@@ -83,7 +62,7 @@ const createPhotoDescription = () => {
   const result = {
     id: idsArray[0],
     url: `photos/${urlsArray[0]}.jpg`,
-    description: COMMENTS[getRandomNumber(0, COMMENTS.length - 1)],
+    description: data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)],
     likes: likesArray[getRandomNumber(0, likesArray.length - 1)],
     message: commentsArray[0],
   };
@@ -95,10 +74,8 @@ const createPhotoDescription = () => {
 };
 
 const createPhotosDesc = () => {
-  const tempArray = Array.from({ length: PHOTO_COUNT }, createPhotoDescription);
+  const tempArray = Array.from({ length: data.PHOTO_COUNT }, createPhotoDescription);
   return tempArray;
 };
 
 createPhotosDesc();
-
-
