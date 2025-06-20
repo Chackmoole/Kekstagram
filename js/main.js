@@ -1,3 +1,4 @@
-import { createPhotosDesc } from './data.js';
+import { fragment } from './photoItems.js';
 
-createPhotosDesc();
+
+console.log(fragment);
