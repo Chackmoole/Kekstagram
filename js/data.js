@@ -33,42 +33,44 @@ const messageIdsArray = createRandomArray(0, 200);
 
 const likesArray = createRandomArray(data.MIN_LIKES, data.MAX_LIKES);
 
+const createTextComment = () => {
+  // const randomNum = getRandomNumber(0, 2);
+  let tempText = '';
+  // for (let i = 0; i <= randomNum; i++) {
+  tempText += (data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)]);
+  // }
+  return tempText;
+};
+
 const createComment = () => {
-  const randomNum = getRandomNumber(0, 2);
-  const tempArray = [];
-  for (let i = 0; i <= randomNum; i++) {
-    tempArray.push(data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)]);
-  }
   const comment = {
     id: messageIdsArray[0],
     avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
-    message: tempArray.join(', '),
+    message: createTextComment(),
     name: data.NAMES[getRandomNumber(0, data.NAMES.length - 1)],
   };
   messageIdsArray.splice(0, 1);
+
   return comment;
 };
 
-const createPhotoCommenta = () => {
-  const tempArray = Array.from({ length: data.PHOTO_COUNT }, createComment);
+const createPhotoComments = () => {
+  const tempArray = Array.from({ length: getRandomNumber(1, 7) }, createComment);
   return tempArray;
 
 };
 
-const commentsArray = createPhotoCommenta();
-
 const createPhotoDescription = () => {
-
+  const commentsArray = createPhotoComments();
   const result = {
     id: idsArray[0],
     url: `photos/${urlsArray[0]}.jpg`,
     description: data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)],
     likes: likesArray[getRandomNumber(0, likesArray.length - 1)],
-    message: commentsArray[0],
+    comments: commentsArray,
   };
   idsArray.splice(0, 1);
   urlsArray.splice(0, 1);
-  commentsArray.splice(0, 1);
 
   return result;
 };
