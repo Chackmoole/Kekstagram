@@ -5,8 +5,6 @@ const fragment = document.createDocumentFragment();
 
 const dataArray = createPhotosDesc();
 
-const tempVar = 1;
-
 const createPhoto = (src, description, commentsCount, likesCount) => {
   const item = template.cloneNode(true);
 
@@ -19,7 +17,7 @@ const createPhoto = (src, description, commentsCount, likesCount) => {
 };
 
 for (let i = 0; i < dataArray.length; i++) {
-  fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, tempVar, dataArray[i].likes));
+  fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, dataArray[i].comments.length, dataArray[i].likes));
 }
 
 export { fragment };
