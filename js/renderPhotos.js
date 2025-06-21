@@ -20,4 +20,6 @@ for (let i = 0; i < dataArray.length; i++) {
   fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, dataArray[i].comments.length, dataArray[i].likes));
 }
 
-export { fragment };
+const photosList = fragment.querySelectorAll('.picture');
+
+export { fragment, photosList };
