@@ -9,7 +9,8 @@ const addBigPhotoHadler = (item) => {
     bigPicture.classList.remove('hidden');
 
     bigPicture.querySelector('img').src = item.querySelector('img').src;
-
+    bigPicture.querySelector('.likes-count').textContent = item.querySelector('.picture__likes').textContent;
+    bigPicture.querySelector('.comments-count').textContent = item.querySelector('.picture__comments').textContent;
 
   });
 };
