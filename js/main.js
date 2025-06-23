@@ -8,6 +8,8 @@ renderPhotos(dataArray);
 
 const photosList = document.querySelectorAll('.picture');
 
-for (const item of [...photosList]) {
-  addBigPhotoHandler(item);
+for (let i = 0; i < dataArray.length; i++) {
+  addBigPhotoHandler(photosList[i], dataArray[i]);
+  console.log(dataArray[i]);
+
 }

@@ -34,11 +34,8 @@ const messageIdsArray = createRandomArray(0, 200);
 const likesArray = createRandomArray(data.MIN_LIKES, data.MAX_LIKES);
 
 const createTextComment = () => {
-  // const randomNum = getRandomNumber(0, 2);
   let tempText = '';
-  // for (let i = 0; i <= randomNum; i++) {
   tempText += (data.COMMENTS[getRandomNumber(0, data.COMMENTS.length - 1)]);
-  // }
   return tempText;
 };
 
@@ -56,8 +53,8 @@ const createComment = () => {
 
 const createPhotoComments = () => {
   const tempArray = Array.from({ length: getRandomNumber(1, 7) }, createComment);
-  return tempArray;
 
+  return tempArray;
 };
 
 const createPhotoDescription = () => {
