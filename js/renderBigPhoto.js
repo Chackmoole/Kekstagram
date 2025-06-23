@@ -1,8 +1,6 @@
-import { photosList } from './renderPhotos.js';
-
 const bigPicture = document.querySelector('.big-picture');
 
-const addBigPhotoHadler = (item) => {
+const addBigPhotoHandler = (item) => {
   item.addEventListener('click', (evt) => {
     evt.preventDefault();
 
@@ -12,13 +10,10 @@ const addBigPhotoHadler = (item) => {
     bigPicture.querySelector('.likes-count').textContent = item.querySelector('.picture__likes').textContent;
     bigPicture.querySelector('.comments-count').textContent = item.querySelector('.picture__comments').textContent;
 
+    bigPicture.querySelector('.social__picture').src = 1;
+
   });
 };
 
-const tempArray = [...photosList];
 
-for (const item of tempArray) {
-  addBigPhotoHadler(item);
-}
-
-export { photosList };
+export { addBigPhotoHandler };

@@ -1,9 +1,6 @@
-import { createPhotosDesc } from './data.js';
-
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
-
-const dataArray = createPhotosDesc();
+const photoList = document.querySelector('.pictures');
 
 const createPhoto = (src, description, commentsCount, likesCount) => {
   const item = template.cloneNode(true);
@@ -16,10 +13,10 @@ const createPhoto = (src, description, commentsCount, likesCount) => {
   return item;
 };
 
-for (let i = 0; i < dataArray.length; i++) {
-  fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, dataArray[i].comments.length, dataArray[i].likes));
-}
 
-const photosList = fragment.querySelectorAll('.picture');
-
-export { fragment, photosList };
+export const renderPhotos = (dataArray) => {
+  for (let i = 0; i < dataArray.length; i++) {
+    fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, dataArray[i].comments.length, dataArray[i].likes));
+  }
+  return photoList.appendChild(fragment);
+};

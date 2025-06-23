@@ -1,7 +1,13 @@
-import { fragment } from './renderPhotos.js';
-import { photosList } from './renderBigPhoto.js';
+import { addBigPhotoHandler } from './renderBigPhoto.js';
+import { renderPhotos } from './renderPhotos.js';
+import { createPhotosDesc } from './data.js';
 
-const photoList = document.querySelector('.pictures');
+const dataArray = createPhotosDesc();
 
-photoList.appendChild(fragment);
-console.log(photosList);
+renderPhotos(dataArray);
+
+const photosList = document.querySelectorAll('.picture');
+
+for (const item of [...photosList]) {
+  addBigPhotoHandler(item);
+}
