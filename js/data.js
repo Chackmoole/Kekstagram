@@ -77,4 +77,6 @@ const createPhotosDesc = () => {
   return tempArray;
 };
 
-export { createPhotosDesc };
+const dataArray = createPhotosDesc();
+
+export { dataArray };
