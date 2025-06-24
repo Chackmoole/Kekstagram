@@ -2,16 +2,17 @@ import { renderComments } from './renderComments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const commentsList = document.querySelector('.social__comments');
+const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
-const closePopup = (element, parentElement) => {
+const closeBigPhoto = () => {
 
-  element.addEventListener('click', () => {
-    parentElement.classList.add('hidden');
+  closeButton.addEventListener('click', () => {
+    bigPicture.classList.add('hidden');
     commentsList.innerHTML = '';
   });
   document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
-      parentElement.classList.add('hidden');
+      bigPicture.classList.add('hidden');
       commentsList.innerHTML = '';
     }
   });
@@ -21,7 +22,6 @@ const addBigPhotoHandler = (item, element) => {
   item.addEventListener('click', (evt) => {
     evt.preventDefault();
 
-    const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
     bigPicture.classList.remove('hidden');
 
@@ -31,7 +31,7 @@ const addBigPhotoHandler = (item, element) => {
     bigPicture.querySelector('.social__picture').src = element.comments[0].avatar;
 
     renderComments(element.comments);
-    closePopup(closeButton, bigPicture);
+    closeBigPhoto();
 
   });
 };
