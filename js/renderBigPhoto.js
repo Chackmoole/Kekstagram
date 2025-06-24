@@ -26,7 +26,7 @@ const addBigPhotoHandler = (element, item) => {
     bigPicture.classList.remove('hidden');
     elementBody.classList.add('modal-open');
 
-    bigPicture.querySelector('img').src = element.querySelector('img').src;
+    bigPicture.querySelector('img').src = item.url;
     bigPicture.querySelector('.likes-count').textContent = item.likes;
     bigPicture.querySelector('.comments-count').textContent = item.comments.length;
     bigPicture.querySelector('.social__caption').textContent = item.description;
