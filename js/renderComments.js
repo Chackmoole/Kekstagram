@@ -1,28 +1,29 @@
-const fragment = document.createDocumentFragment();
 const commentsList = document.querySelector('.social__comments');
 const template = commentsList.querySelector('.social__comment');
-const item = template.cloneNode(true);
+const commentsListElement = template.cloneNode(true);
 commentsList.innerHTML = '';
 
-const createComments = (element) => {
-  const item2 = item.cloneNode(true);
-  const img = item2.querySelector('.social__picture');
-  const text = item2.querySelector('.social__text');
-
+const createComment = (element) => {
+  const item = commentsListElement.cloneNode(true);
+  const img = item.querySelector('.social__picture');
+  const text = item.querySelector('.social__text');
 
   img.src = element.avatar;
   img.alt = element.name;
   text.textContent = element.message;
 
-  return fragment.appendChild(item2);
+  return item;
 };
 
 
 const renderComments = (tempArray) => {
+  const fragment = document.createDocumentFragment();
+
   for (let i = 0; i < tempArray.length; i++) {
-    commentsList.appendChild(createComments(tempArray[i]));
+    fragment.appendChild(createComment(tempArray[i]));
   }
 
+  commentsList.appendChild(fragment);
   return commentsList;
 };
 
