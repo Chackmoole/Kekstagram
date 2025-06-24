@@ -1,3 +1,3 @@
-import { createPhotosDesc } from './data.js';
+import { renderPhotos } from './renderPhotos.js';
 
-createPhotosDesc();
+renderPhotos();
