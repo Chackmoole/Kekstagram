@@ -1,7 +1,6 @@
 import { renderComments } from './renderComments.js';
 
 const bigPicture = document.querySelector('.big-picture');
-const commentsListElement = bigPicture.querySelector('.social__comments');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const elementBody = document.querySelector('body');
 
@@ -9,14 +8,11 @@ const closeBigPhoto = () => {
 
   closeButton.addEventListener('click', () => {
     bigPicture.classList.add('hidden');
-    //TODO
-    commentsListElement.innerHTML = '';
     elementBody.classList.remove('modal-open');
   });
   document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       bigPicture.classList.add('hidden');
-      commentsListElement.innerHTML = '';
       elementBody.classList.remove('modal-open');
     }
   });
