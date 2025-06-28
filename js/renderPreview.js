@@ -4,13 +4,17 @@ const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
 const uploadCancel = document.querySelector('#upload-cancel');
 const submitButton = document.querySelector('.img-upload__form');
+const inputTag = document.querySelector('.text__hashtags');
 
 
 const closeModal = () => {
-  previewPhoto.classList.add('hidden');
-  elementBody.classList.remove('modal-open');
-  uploadCancel.removeEventListener('click', closeModal);
-  document.removeEventListener('keydown', onEscDown);
+
+  if (document.activeElement !== inputTag) {
+    previewPhoto.classList.add('hidden');
+    elementBody.classList.remove('modal-open');
+    uploadCancel.removeEventListener('click', closeModal);
+    document.removeEventListener('keydown', onEscDown);
+  }
 };
 
 function onEscDown(evt) {
