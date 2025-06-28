@@ -1,6 +1,9 @@
+import { validationHashTag } from './validationHashTag.js';
+
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
 const uploadCancel = document.querySelector('#upload-cancel');
+const submitButton = document.querySelector('.img-upload__form');
 
 
 const closeModal = () => {
@@ -27,7 +30,15 @@ const showModal = () => {
   addHandlers();
 };
 
+const addSubmitHandler = () => {
+  submitButton.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    validationHashTag();
+
+  });
+};
 
 export const renderPreview = () => {
   showModal();
+  addSubmitHandler();
 };
