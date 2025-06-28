@@ -1,9 +1,11 @@
 import { dataArray } from './data.js';
 import { addBigPhotoHandler } from './renderBigPhoto.js';
+import { renderPreview } from './renderPreview.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
 const photoList = document.querySelector('.pictures');
+const photoPreview = document.querySelector('.img-upload__start');
 
 
 const createPhoto = (src, description, commentsCount, likesCount) => {
@@ -33,6 +35,8 @@ const addHandlers = () => {
     addBigPhotoHandler(photosList[i], dataArray[i]);
   }
 };
+
+photoPreview.addEventListener('change', renderPreview);
 
 
 export const renderPhotos = () => {
