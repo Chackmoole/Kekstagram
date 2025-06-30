@@ -34,12 +34,18 @@ const showModal = () => {
   addHandlers();
 };
 
-const addSubmitHandler = () => {
-  submitButton.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    validationHashTag();
+const validationOnSubmit = (evt) => {
+  evt.preventDefault();
+  const isValid = validationHashTag();
 
-  });
+  if (isValid === true) {
+    closeModal();
+    submitButton.removeEventListener('submit', validationOnSubmit);
+  }
+};
+
+const addSubmitHandler = () => {
+  submitButton.addEventListener('submit', validationOnSubmit);
 };
 
 export const renderPreview = () => {
