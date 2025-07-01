@@ -1,7 +1,6 @@
 import { isUniq } from './util.js';
 
 const inputTag = document.querySelector('.text__hashtags');
-const inputUpload = document.querySelector('#upload-file');
 
 const checkTag = (item) => {
   const tagsArray = item.split(' ').map((x) => x.toLowerCase());
@@ -9,15 +8,17 @@ const checkTag = (item) => {
   return isUniq(tagsArray) && (tagsArray.length <= 5);
 };
 
+
 export const validationHashTag = () => {
   const regExp = /^(?:#([A-Za-z0-9]{1,19}))(\s#([A-Za-z0-9]{1,19})){0,4}$/;
-  if (regExp.test(inputTag.value) && checkTag(inputTag.value)) {
+  if ((regExp.test(inputTag.value) || inputTag.value === '') && checkTag(inputTag.value)) {
     console.log('правильный Хэш-Тэг');
-    inputTag.value = '';
-    inputUpload.value = '';
+
     return true;
   }
   else {
     console.log('не правильный Хэш-Тэг');
   }
 };
+
+
