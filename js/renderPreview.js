@@ -16,6 +16,7 @@ const closeModal = () => {
   if (document.activeElement !== inputTag && document.activeElement !== inputComment) {
     previewPhoto.classList.add('hidden');
     elementBody.classList.remove('modal-open');
+    inputUpload.value = '';
     uploadCancel.removeEventListener('click', closeModal);
     document.removeEventListener('keydown', onEscDown);
   }
