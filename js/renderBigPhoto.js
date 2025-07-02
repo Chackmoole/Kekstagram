@@ -9,7 +9,7 @@ const addCommentsButton = bigPicture.querySelector('.comments-loader');
 
 const closeBigPhoto = () => {
 
-  closeButton.addEventListener('  ', () => {
+  closeButton.addEventListener('click', () => {
     bigPicture.classList.add('hidden');
     elementBody.classList.remove('modal-open');
   });
@@ -33,8 +33,6 @@ const calcComments = (array, count) => {
 const addBigPhotoHandler = (element, item) => {
   element.addEventListener('click', (evt) => {
     evt.preventDefault();
-
-    const commentsCount = item.comments.length;
     let commentsCounter = 5;
 
     bigPicture.classList.remove('hidden');
@@ -44,12 +42,13 @@ const addBigPhotoHandler = (element, item) => {
     bigPicture.querySelector('.likes-count').textContent = item.likes;
     bigPicture.querySelector('.social__caption').textContent = item.description;
 
-    commentCount.textContent = `${commentsCount} из ${item.comments.length} комментариев`;
+    commentCount.textContent = `${calcComments(item.comments, commentsCounter).length} из ${item.comments.length} комментариев`;
 
     renderComments(calcComments(item.comments, commentsCounter));
     addCommentsButton.addEventListener('click', () => {
       commentsCounter += 5;
       renderComments(calcComments(item.comments, commentsCounter));
+      commentCount.textContent = `${calcComments(item.comments, commentsCounter).length} из ${item.comments.length} комментариев`;
     });
     closeBigPhoto();
   });
