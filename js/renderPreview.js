@@ -8,6 +8,7 @@ const submitButton = document.querySelector('.img-upload__form');
 const inputTag = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 const inputUpload = document.querySelector('#upload-file');
+const errorHashElement = document.querySelector('.img-upload__error--hash');
 
 
 const closeModal = () => {
@@ -48,6 +49,7 @@ const validationOnSubmit = (evt) => {
     inputTag.value = '';
     inputComment.value = '';
     inputUpload.value = '';
+    errorHashElement.classList.add('hidden');
   }
 };
 
