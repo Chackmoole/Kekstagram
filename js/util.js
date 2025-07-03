@@ -16,4 +16,6 @@ const getRandomNumber = (min, max) => {
 
 const checkStringLength = (str, maxLength) => typeof maxLength === 'number' && typeof str === 'string' && str.trim().length <= maxLength;
 
-export { getRandomNumber, checkStringLength };
+const isUniq = (arr) => new Set(arr).size === arr.length;
+
+export { getRandomNumber, checkStringLength, isUniq };
