@@ -1,6 +1,6 @@
 import { dataArray } from './data.js';
 import { addBigPhotoHandler } from './renderBigPhoto.js';
-import { renderPreview } from './renderPreview.js';
+import { renderUploadPhoto } from './renderUploadPhoto.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
@@ -36,7 +36,7 @@ const addHandlers = () => {
   }
 };
 
-photoPreview.addEventListener('change', renderPreview);
+photoPreview.addEventListener('change', renderUploadPhoto);
 
 
 export const renderPhotos = () => {

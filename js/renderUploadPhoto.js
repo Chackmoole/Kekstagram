@@ -1,5 +1,6 @@
 import { validationHashTag } from './validationHashTag.js';
 import { validationComment } from './validationComment.js';
+import { createSlider } from './createSlider.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -58,7 +59,9 @@ const addSubmitHandler = () => {
   submitButton.addEventListener('submit', validationOnSubmit);
 };
 
-export const renderPreview = () => {
+export const renderUploadPhoto = () => {
   showModal();
   addSubmitHandler();
+  createSlider();
+
 };
