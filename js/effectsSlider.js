@@ -1,7 +1,8 @@
 const effectsField = document.querySelector('.img-upload__effects');
 const valueElement = document.querySelector('.effect-level__value');
-const uploadImage = document.querySelector('.img-upload__preview').firstElementChild;
+const uploadImageElement = document.querySelector('.img-upload__preview').firstElementChild;
 const sliderElement = document.querySelector('.effect-level__slider');
+const defaultInput = document.querySelector('#effect-none');
 let filterPhotoEffect = 'none';
 let filterUnit = '';
 
@@ -10,7 +11,8 @@ valueElement.value = 1;
 const sliderHandler = (element) => {
   element.noUiSlider.on('update', () => {
     valueElement.value = element.noUiSlider.get();
-    uploadImage.style.filter = `${filterPhotoEffect}(${valueElement.value}${filterUnit})`;
+    if (filterPhotoEffect !== 'none') { uploadImageElement.style.filter = `${filterPhotoEffect}(${valueElement.value}${filterUnit})`; }
+    else { uploadImageElement.style.filter = ''; }
   });
 };
 
@@ -25,14 +27,23 @@ const setAttributeEffect = (min, max, step) => {
   sliderElement.noUiSlider.set(max);
 };
 
+const resetSlider = () => {
+  defaultInput.checked = true;
+  uploadImageElement.classList.remove(...uploadImageElement.classList);
+  uploadImageElement.classList.add('effects__preview--none');
+  uploadImageElement.style.filter = '';
+  filterPhotoEffect = 'none';
+  sliderElement.noUiSlider.destroy();
+};
+
 const effectsHandler = () => {
   effectsField.addEventListener('change', (evt) => {
     const item = evt.target.id;
 
     switch (item) {
       case 'effect-none':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--none');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--none');
         filterPhotoEffect = 'none';
         filterUnit = '';
         setAttributeEffect(0, 1, 0.1);
@@ -40,40 +51,40 @@ const effectsHandler = () => {
 
         break;
       case 'effect-chrome':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--chrome');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--chrome');
         filterPhotoEffect = 'grayscale';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
         setAttributeEffect(0, 1, 0.1);
         break;
       case 'effect-sepia':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--sepia');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--sepia');
         filterPhotoEffect = 'sepia';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
         setAttributeEffect(0, 1, 0.1);
         break;
       case 'effect-marvin':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--marvin');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--marvin');
         filterPhotoEffect = 'invert';
         filterUnit = '%';
         sliderElement.removeAttribute('disabled');
         setAttributeEffect(0, 100, 1);
         break;
       case 'effect-phobos':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--phobos');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--phobos');
         filterPhotoEffect = 'blur';
         filterUnit = 'px';
         sliderElement.removeAttribute('disabled');
         setAttributeEffect(0, 3, 0.1);
         break;
       case 'effect-heat':
-        uploadImage.classList.remove(...uploadImage.classList);
-        uploadImage.classList.add('effects__preview--heat');
+        uploadImageElement.classList.remove(...uploadImageElement.classList);
+        uploadImageElement.classList.add('effects__preview--heat');
         filterPhotoEffect = 'brightness';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
@@ -83,4 +94,4 @@ const effectsHandler = () => {
   });
 };
 
-export { effectsHandler, sliderHandler };
+export { effectsHandler, sliderHandler, resetSlider, sliderElement };

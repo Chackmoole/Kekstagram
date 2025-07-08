@@ -1,6 +1,7 @@
 import { validationHashTag } from './validationHashTag.js';
 import { validationComment } from './validationComment.js';
 import { createSlider } from './createSlider.js';
+import { resetSlider, sliderElement } from './effectsSlider.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -10,7 +11,6 @@ const inputTag = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 const inputUpload = document.querySelector('#upload-file');
 const errorHashElement = document.querySelector('.img-upload__error--hash');
-const sliderElement = document.querySelector('.effect-level__slider');
 
 
 const closeModal = () => {
@@ -21,7 +21,7 @@ const closeModal = () => {
     inputUpload.value = '';
     uploadCancel.removeEventListener('click', closeModal);
     document.removeEventListener('keydown', onEscDown);
-    sliderElement.noUiSlider.destroy();
+    resetSlider();
   }
 };
 
