@@ -3,6 +3,7 @@ import { validationComment } from './validationComment.js';
 import { createSlider } from './createSlider.js';
 import { resetSlider, sliderElement } from './effectsSlider.js';
 import { scaleHandler } from './scaleChange.js';
+import { resetScale } from './scaleChange.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -41,6 +42,7 @@ const showModal = () => {
   previewPhoto.classList.remove('hidden');
   elementBody.classList.add('modal-open');
   addHandlers();
+  resetScale();
 };
 
 const validationOnSubmit = (evt) => {

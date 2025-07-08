@@ -6,8 +6,12 @@ const uploadImageElement = document.querySelector('.img-upload__preview').firstE
 
 scaleInput.value = '100%';
 
+const resetScale = () => {
+  scaleInput.value = '100%';
+  uploadImageElement.style.transform = 'scale(1)';
+};
 
-export const scaleHandler = () => {
+const scaleHandler = () => {
   let scaleCount = scaleInput.value.slice(0, -1);
 
   decreaseButton.addEventListener('click', () => {
@@ -33,6 +37,6 @@ export const scaleHandler = () => {
       increaseButton.disabled = true;
     }
   });
-
-
 };
+
+export { resetScale, scaleHandler };
