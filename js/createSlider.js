@@ -5,8 +5,19 @@ const uploadImage = document.querySelector('.img-upload__preview').firstElementC
 
 valueElement.value = 1;
 
-let filterPhoto = 'none';
+let filterPhotoEffect = 'none';
 let filterUnit = '';
+
+const setAttribute = (min, max, step) => {
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: min,
+      max: max,
+    },
+    step: step,
+  });
+  sliderElement.noUiSlider.set(max);
+};
 
 const createSlider = () => {
 
@@ -22,7 +33,7 @@ const createSlider = () => {
 
   sliderElement.noUiSlider.on('update', () => {
     valueElement.value = sliderElement.noUiSlider.get();
-    uploadImage.style.filter = `${filterPhoto}(${valueElement.value}${filterUnit})`;
+    uploadImage.style.filter = `${filterPhotoEffect}(${valueElement.value}${filterUnit})`;
   });
 
   effectsField.addEventListener('change', (evt) => {
@@ -32,92 +43,50 @@ const createSlider = () => {
       case 'effect-none':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--none');
-        filterPhoto = 'none';
+        filterPhotoEffect = 'none';
         filterUnit = '';
         sliderElement.setAttribute('disabled', true);
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 1,
-          },
-          step: 0.1,
-        });
-        sliderElement.noUiSlider.set(1);
+
         break;
       case 'effect-chrome':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--chrome');
-        filterPhoto = 'grayscale';
+        filterPhotoEffect = 'grayscale';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 1,
-          },
-          step: 0.1,
-        });
-        sliderElement.noUiSlider.set(1);
+        setAttribute(0, 1, 0.1);
         break;
       case 'effect-sepia':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--sepia');
-        filterPhoto = 'sepia';
+        filterPhotoEffect = 'sepia';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 1,
-          },
-          step: 0.1,
-        });
-        sliderElement.noUiSlider.set(1);
+        setAttribute(0, 1, 0.1);
         break;
       case 'effect-marvin':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--marvin');
-        filterPhoto = 'invert';
+        filterPhotoEffect = 'invert';
         filterUnit = '%';
         sliderElement.removeAttribute('disabled');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 100,
-          },
-          step: 1,
-        });
-        sliderElement.noUiSlider.set(100);
+        setAttribute(0, 100, 1);
         break;
       case 'effect-phobos':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--phobos');
-        filterPhoto = 'blur';
+        filterPhotoEffect = 'blur';
         filterUnit = 'px';
         sliderElement.removeAttribute('disabled');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 3,
-          },
-          step: 0.1,
-        });
-        sliderElement.noUiSlider.set(3);
+        setAttribute(0, 3, 0.1);
         break;
       case 'effect-heat':
         uploadImage.classList.remove(...uploadImage.classList);
         uploadImage.classList.add('effects__preview--heat');
-        filterPhoto = 'brightness';
+        filterPhotoEffect = 'brightness';
         filterUnit = '';
         sliderElement.removeAttribute('disabled');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 1,
-            max: 3,
-          },
-          step: 0.1,
-        });
-        sliderElement.noUiSlider.set(3);
+        setAttribute(0, 3, 0.1);
         break;
     }
   });
