@@ -2,6 +2,7 @@ import { validationHashTag } from './validationHashTag.js';
 import { validationComment } from './validationComment.js';
 import { createSlider } from './createSlider.js';
 import { resetSlider, sliderElement } from './effectsSlider.js';
+import { scaleHandler } from './scaleChange.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -65,4 +66,5 @@ export const renderUploadPhoto = () => {
   showModal();
   addSubmitHandler();
   createSlider(sliderElement);
+  scaleHandler();
 };
