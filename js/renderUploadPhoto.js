@@ -1,5 +1,9 @@
 import { validationHashTag } from './validationHashTag.js';
 import { validationComment } from './validationComment.js';
+import { createSlider } from './createSlider.js';
+import { resetSlider, sliderElement } from './effectsSlider.js';
+import { scaleHandler } from './scaleChange.js';
+import { resetScale } from './scaleChange.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -19,6 +23,7 @@ const closeModal = () => {
     inputUpload.value = '';
     uploadCancel.removeEventListener('click', closeModal);
     document.removeEventListener('keydown', onEscDown);
+    resetSlider();
   }
 };
 
@@ -37,6 +42,7 @@ const showModal = () => {
   previewPhoto.classList.remove('hidden');
   elementBody.classList.add('modal-open');
   addHandlers();
+  resetScale();
 };
 
 const validationOnSubmit = (evt) => {
@@ -58,7 +64,9 @@ const addSubmitHandler = () => {
   submitButton.addEventListener('submit', validationOnSubmit);
 };
 
-export const renderPreview = () => {
+export const renderUploadPhoto = () => {
   showModal();
   addSubmitHandler();
+  createSlider(sliderElement);
+  scaleHandler();
 };
