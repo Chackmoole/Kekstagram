@@ -9,11 +9,12 @@ import { sendData } from './api.js';
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
 const uploadCancel = document.querySelector('#upload-cancel');
-const submitButton = document.querySelector('.img-upload__form');
+const formElement = document.querySelector('.img-upload__form');
 const inputTag = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 const inputUpload = document.querySelector('#upload-file');
 const errorHashElement = document.querySelector('.img-upload__error--hash');
+const submitButton = document.querySelector('.img-upload__submit');
 
 
 const closeModal = () => {
@@ -52,9 +53,13 @@ const validationOnSubmit = async (evt) => {
   const isValidComment = validationComment();
   if (isValidTag === true && isValidComment === true) {
     const formData = new FormData(evt.target);
+    submitButton.disable = true;
+    submitButton.textContent = 'загружаю...';
     await sendData(formData);
     closeModal();
-    submitButton.removeEventListener('submit', validationOnSubmit);
+    submitButton.textContent = 'Опубликовать';
+    submitButton.disable = false;
+    formElement.removeEventListener('submit', validationOnSubmit);
 
     inputTag.value = '';
     inputComment.value = '';
@@ -64,7 +69,7 @@ const validationOnSubmit = async (evt) => {
 };
 
 const addSubmitHandler = () => {
-  submitButton.addEventListener('submit', validationOnSubmit);
+  formElement.addEventListener('submit', validationOnSubmit);
 };
 
 const renderUploadPhoto = () => {
