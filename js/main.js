@@ -1,3 +1,3 @@
-import { renderPhotos } from './renderPhotos.js';
+import { api } from './api.js';
 
-renderPhotos();
+api();
