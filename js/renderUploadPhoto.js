@@ -4,6 +4,7 @@ import { createSlider } from './createSlider.js';
 import { resetSlider, sliderElement } from './effectsSlider.js';
 import { scaleHandler } from './scaleChange.js';
 import { resetScale } from './scaleChange.js';
+import { sendData } from './api.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
@@ -45,11 +46,13 @@ const showModal = () => {
   resetScale();
 };
 
-const validationOnSubmit = (evt) => {
+const validationOnSubmit = async (evt) => {
   evt.preventDefault();
   const isValidTag = validationHashTag();
   const isValidComment = validationComment();
   if (isValidTag === true && isValidComment === true) {
+    const formData = new FormData(evt.target);
+    await sendData(formData);
     closeModal();
     submitButton.removeEventListener('submit', validationOnSubmit);
 
@@ -64,9 +67,11 @@ const addSubmitHandler = () => {
   submitButton.addEventListener('submit', validationOnSubmit);
 };
 
-export const renderUploadPhoto = () => {
+const renderUploadPhoto = () => {
   showModal();
   addSubmitHandler();
   createSlider(sliderElement);
   scaleHandler();
 };
+
+export { renderUploadPhoto, closeModal };
