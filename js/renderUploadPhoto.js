@@ -4,15 +4,17 @@ import { createSlider } from './createSlider.js';
 import { resetSlider, sliderElement } from './effectsSlider.js';
 import { scaleHandler } from './scaleChange.js';
 import { resetScale } from './scaleChange.js';
+import { sendData } from './api.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
 const uploadCancel = document.querySelector('#upload-cancel');
-const submitButton = document.querySelector('.img-upload__form');
+const formElement = document.querySelector('.img-upload__form');
 const inputTag = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 const inputUpload = document.querySelector('#upload-file');
 const errorHashElement = document.querySelector('.img-upload__error--hash');
+const submitButton = document.querySelector('.img-upload__submit');
 
 
 const closeModal = () => {
@@ -45,13 +47,19 @@ const showModal = () => {
   resetScale();
 };
 
-const validationOnSubmit = (evt) => {
+const validationOnSubmit = async (evt) => {
   evt.preventDefault();
   const isValidTag = validationHashTag();
   const isValidComment = validationComment();
   if (isValidTag === true && isValidComment === true) {
+    const formData = new FormData(evt.target);
+    submitButton.disable = true;
+    submitButton.textContent = 'загружаю...';
+    await sendData(formData);
     closeModal();
-    submitButton.removeEventListener('submit', validationOnSubmit);
+    submitButton.textContent = 'Опубликовать';
+    submitButton.disable = false;
+    formElement.removeEventListener('submit', validationOnSubmit);
 
     inputTag.value = '';
     inputComment.value = '';
@@ -61,12 +69,14 @@ const validationOnSubmit = (evt) => {
 };
 
 const addSubmitHandler = () => {
-  submitButton.addEventListener('submit', validationOnSubmit);
+  formElement.addEventListener('submit', validationOnSubmit);
 };
 
-export const renderUploadPhoto = () => {
+const renderUploadPhoto = () => {
   showModal();
   addSubmitHandler();
   createSlider(sliderElement);
   scaleHandler();
 };
+
+export { renderUploadPhoto, closeModal };

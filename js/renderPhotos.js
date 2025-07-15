@@ -1,4 +1,3 @@
-import { dataArray } from './data.js';
 import { addBigPhotoHandler } from './renderBigPhoto.js';
 import { renderUploadPhoto } from './renderUploadPhoto.js';
 
@@ -20,7 +19,7 @@ const createPhoto = (src, description, commentsCount, likesCount) => {
 };
 
 
-const renderPhotosSet = () => {
+const renderPhotosSet = (dataArray) => {
   for (let i = 0; i < dataArray.length; i++) {
     fragment.appendChild(createPhoto((dataArray[i].url), dataArray[i].description, dataArray[i].comments.length, dataArray[i].likes));
   }
@@ -28,7 +27,7 @@ const renderPhotosSet = () => {
 };
 
 
-const addHandlers = () => {
+const addHandlers = (dataArray) => {
   const photosList = document.querySelectorAll('.picture');
 
   for (let i = 0; i < dataArray.length; i++) {
@@ -39,7 +38,7 @@ const addHandlers = () => {
 photoPreview.addEventListener('change', renderUploadPhoto);
 
 
-export const renderPhotos = () => {
-  renderPhotosSet();
-  addHandlers();
+export const renderPhotos = (dataArray) => {
+  renderPhotosSet(dataArray);
+  addHandlers(dataArray);
 };

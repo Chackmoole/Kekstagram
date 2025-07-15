@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 10000;
+
 const getRandomNumber = (min, max) => {
   if (typeof min !== 'number' || typeof max !== 'number' || min < 0 || max < 0) {
     return null;
@@ -18,4 +20,25 @@ const checkStringLength = (str, maxLength) => typeof maxLength === 'number' && t
 
 const isUniq = (arr) => new Set(arr).size === arr.length;
 
-export { getRandomNumber, checkStringLength, isUniq };
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '16px 4px';
+  alertContainer.style.fontSize = '24px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'tomato';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+export { getRandomNumber, checkStringLength, isUniq, showAlert };
