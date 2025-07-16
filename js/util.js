@@ -41,6 +41,17 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+const createRandomArray = (data, maxNumber) => {
+  const randomArray = [];
+  const tempArray = data.slice();
+
+  while (randomArray.length < maxNumber) {
+    const randomNum = getRandomNumber(0, tempArray.length - 1);
+    randomArray.push(tempArray[randomNum]);
+    tempArray.splice(randomNum, 1);
+  }
+  return randomArray;
+};
 
 // Функция взята из интернета и доработана
 // Источник - https://www.freecodecamp.org/news/javascript-debounce-example
@@ -63,4 +74,4 @@ function debounce(callback, timeoutDelay = 500) {
   };
 }
 
-export { getRandomNumber, checkStringLength, isUniq, showAlert, debounce };
+export { getRandomNumber, checkStringLength, isUniq, showAlert, createRandomArray, debounce };
