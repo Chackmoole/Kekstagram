@@ -1,6 +1,7 @@
 import { renderPhotosSet } from './photos.js';
 import { addBigPhotoHandler } from './renderBigPhoto.js';
 import { createRandomArray } from './util.js';
+import { debounce } from './util.js';
 
 const RANDOM_NUMBER_PHOTO = 10;
 
@@ -39,30 +40,30 @@ export const filterPhotos = (dataArray2) => {
   renderPhotosSet(result);
   addHandlers(result);
 
-  defaultFilterElement.addEventListener('click', (evt) => {
+  defaultFilterElement.addEventListener('click', debounce((evt) => {
     showActiveFilterButton(evt);
     result = dataArray2.slice();
     clearPhotoList();
     renderPhotosSet(result);
     addHandlers(result);
-  });
+  }));
 
-  randomFilterElement.addEventListener('click', (evt) => {
+  randomFilterElement.addEventListener('click', debounce((evt) => {
     showActiveFilterButton(evt);
     result = dataArray2.slice();
     clearPhotoList();
     const randomPhotos = createRandomArray(result, RANDOM_NUMBER_PHOTO);
     renderPhotosSet(randomPhotos);
     addHandlers(randomPhotos);
-  });
+  }));
 
-  discussedFilterElement.addEventListener('click', (evt) => {
+  discussedFilterElement.addEventListener('click', debounce((evt) => {
     showActiveFilterButton(evt);
     result = dataArray2.slice().sort((a, b) => b.comments.length - a.comments.length);
     clearPhotoList();
     renderPhotosSet(result);
     addHandlers(result);
-  });
+  }));
 
   return result;
 };
