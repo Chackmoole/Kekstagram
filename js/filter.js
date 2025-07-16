@@ -51,6 +51,7 @@ export const filterPhotos = (dataArray2) => {
     result = dataArray2.slice();
     clearPhotoList();
     renderPhotosSet(createRandomArray(result, RANDOM_NUMBER_PHOTO));
+    addHandlers(result);
   });
 
   discussedFilterElement.addEventListener('click', (evt) => {
@@ -58,6 +59,7 @@ export const filterPhotos = (dataArray2) => {
     result = dataArray2.slice().sort((a, b) => b.comments.length - a.comments.length);
     clearPhotoList();
     renderPhotosSet(result);
+    addHandlers(result);
   });
 
   return result;
