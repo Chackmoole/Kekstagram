@@ -11,6 +11,12 @@ const randomFilterElement = formFilterElement.querySelector('#filter-random');
 const discussedFilterElement = formFilterElement.querySelector('#filter-discussed');
 const photoList = document.querySelector('.pictures');
 
+const clearPhotoList = () => {
+  const deleteELements = photoList.querySelectorAll('.picture');
+  deleteELements.forEach((element) => {
+    element.remove();
+  });
+};
 
 const addHandlers = (dataArray) => {
   const photosList = document.querySelectorAll('.picture');
@@ -27,16 +33,11 @@ const showActiveFilterButton = (evt) => {
   evt.target.classList.add('img-filters__button--active');
 };
 
-const clearPhotoList = () => {
-  const deleteELements = photoList.querySelectorAll('.picture');
-  deleteELements.forEach((element) => {
-    element.remove();
-  });
-};
 
 export const filterPhotos = (dataArray2) => {
   let result = dataArray2.slice();
   renderPhotosSet(result);
+  addHandlers(result);
 
   defaultFilterElement.addEventListener('click', (evt) => {
     showActiveFilterButton(evt);
@@ -50,8 +51,9 @@ export const filterPhotos = (dataArray2) => {
     showActiveFilterButton(evt);
     result = dataArray2.slice();
     clearPhotoList();
-    renderPhotosSet(createRandomArray(result, RANDOM_NUMBER_PHOTO));
-    addHandlers(result);
+    const randomPhotos = createRandomArray(result, RANDOM_NUMBER_PHOTO);
+    renderPhotosSet(randomPhotos);
+    addHandlers(randomPhotos);
   });
 
   discussedFilterElement.addEventListener('click', (evt) => {
