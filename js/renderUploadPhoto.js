@@ -5,6 +5,7 @@ import { resetSlider, sliderElement } from './effectsSlider.js';
 import { scaleHandler } from './scaleChange.js';
 import { resetScale } from './scaleChange.js';
 import { sendData } from './api.js';
+import './preview.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');
