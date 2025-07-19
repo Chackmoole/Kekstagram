@@ -1,4 +1,4 @@
-import { effectsHandler, sliderHandler } from './effectsSlider.js';
+import { effectsHandler, sliderHandler } from './slider-effects.js';
 
 
 const createSlider = (element) => {

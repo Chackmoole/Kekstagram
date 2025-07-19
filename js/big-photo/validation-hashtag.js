@@ -1,4 +1,4 @@
-import { isUniq } from './util.js';
+import { isUniq } from '../util.js';
 
 const inputTag = document.querySelector('.text__hashtags');
 const errorElement = document.querySelector('.img-upload__error--hash');
