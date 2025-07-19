@@ -1,11 +1,11 @@
-import { validationHashTag } from './validationHashTag.js';
-import { validationComment } from './validationComment.js';
-import { createSlider } from './createSlider.js';
-import { resetSlider, sliderElement } from './effectsSlider.js';
-import { scaleHandler } from './scaleChange.js';
-import { resetScale } from './scaleChange.js';
-import { sendData } from './api.js';
-import './preview.js';
+import { validationHashTag } from '../big-photo/validation-hashtag.js';
+import { validationComment } from '../big-photo/validation-comment.js';
+import { createSlider } from './slider.js';
+import { resetSlider, sliderElement } from './slider-effects.js';
+import { scaleHandler } from './scale.js';
+import { resetScale } from './scale.js';
+import { sendData } from '../api.js';
+import './preview-upload-photo.js';
 
 const previewPhoto = document.querySelector('.img-upload__overlay');
 const elementBody = document.querySelector('body');

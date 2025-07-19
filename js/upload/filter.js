@@ -1,7 +1,7 @@
-import { renderPhotosSet } from './photos.js';
-import { addBigPhotoHandler } from './renderBigPhoto.js';
-import { createRandomArray } from './util.js';
-import { debounce } from './util.js';
+import { renderPhotosSet } from '../big-photo/photos.js';
+import { addBigPhotoHandler } from '../big-photo/big-photo.js';
+import { createRandomArray } from '../util.js';
+import { debounce } from '../util.js';
 
 const RANDOM_NUMBER_PHOTO = 10;
 

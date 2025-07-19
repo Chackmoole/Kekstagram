@@ -44,14 +44,15 @@ const effectsHandler = () => {
       case 'effect-none':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
         uploadImageElement.classList.add('effects__preview--none');
+        sliderElement.classList.add('visually-hidden');
         filterPhotoEffect = 'none';
         filterUnit = '';
         setAttributeEffect(0, 1, 0.1);
         sliderElement.setAttribute('disabled', true);
-
         break;
       case 'effect-chrome':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
+        sliderElement.classList.remove('visually-hidden');
         uploadImageElement.classList.add('effects__preview--chrome');
         filterPhotoEffect = 'grayscale';
         filterUnit = '';
@@ -60,6 +61,7 @@ const effectsHandler = () => {
         break;
       case 'effect-sepia':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
+        sliderElement.classList.remove('visually-hidden');
         uploadImageElement.classList.add('effects__preview--sepia');
         filterPhotoEffect = 'sepia';
         filterUnit = '';
@@ -68,6 +70,7 @@ const effectsHandler = () => {
         break;
       case 'effect-marvin':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
+        sliderElement.classList.remove('visually-hidden');
         uploadImageElement.classList.add('effects__preview--marvin');
         filterPhotoEffect = 'invert';
         filterUnit = '%';
@@ -76,6 +79,7 @@ const effectsHandler = () => {
         break;
       case 'effect-phobos':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
+        sliderElement.classList.remove('visually-hidden');
         uploadImageElement.classList.add('effects__preview--phobos');
         filterPhotoEffect = 'blur';
         filterUnit = 'px';
@@ -84,6 +88,7 @@ const effectsHandler = () => {
         break;
       case 'effect-heat':
         uploadImageElement.classList.remove(...uploadImageElement.classList);
+        sliderElement.classList.remove('visually-hidden');
         uploadImageElement.classList.add('effects__preview--heat');
         filterPhotoEffect = 'brightness';
         filterUnit = '';

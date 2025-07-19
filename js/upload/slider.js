@@ -1,4 +1,4 @@
-import { effectsHandler, sliderHandler } from './effectsSlider.js';
+import { effectsHandler, sliderHandler } from './slider-effects.js';
 
 
 const createSlider = (element) => {
@@ -13,6 +13,7 @@ const createSlider = (element) => {
   });
   element.noUiSlider.set(1);
   element.setAttribute('disabled', true);
+  element.classList.add('visually-hidden');
   sliderHandler(element);
   effectsHandler();
 };
